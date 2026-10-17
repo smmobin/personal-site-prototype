@@ -10,9 +10,8 @@ html {
   color: var(--text);
 }
 
-html:not(.is-ready) body {
-  visibility: hidden;
-}
+/* Do not hide the whole body before JS — opening index.html without Vite
+   used to look like a "broken" blank page. */
 
 body {
   margin: 0;
