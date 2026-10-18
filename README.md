@@ -44,6 +44,12 @@ npm run verify        # واحد + بیلد + e2e
 | [`docs/prompts/PRODUCT_MANAGER.md`](docs/prompts/PRODUCT_MANAGER.md) | پرامپت چت مدیر محصول |
 | [`AGENTS.md`](AGENTS.md) | ورود هر ایجنت |
 
+## انتشار (GitHub Pages)
+
+آدرس: https://smmobin.github.io/personal-site-prototype/
+
+این پروژه Vite است. **ریشهٔ سورس را به Pages وصل نکن** — فقط `dist` بعد از `npm run build` باید سرو شود و `base` باید `/personal-site-prototype/` باشد. جزئیات در [`docs/SPEC.md`](docs/SPEC.md).
+
 ## نکته محصول
 
 فرم تماس پروتوتایپ است و چیزی ارسال/ذخیره نمی‌کند. فقط زبان در `localStorage` با کلید `persona-lang` می‌ماند.

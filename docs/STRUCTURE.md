@@ -19,6 +19,7 @@ personal-site-prototype/
 │       ├── PRODUCT_MANAGER.md
 │       └── IMPLEMENTER.template.md
 ├── .cursor/rules/            # قوانین همیشگی Cursor
+├── .github/workflows/        # بیلد و استقرار GitHub Pages (هدف محصول)
 ├── src/
 │   ├── main.ts               # bootstrap
 │   ├── render.ts             # رندر دیکشنری روی DOM

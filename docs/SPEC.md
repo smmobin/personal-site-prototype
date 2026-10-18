@@ -33,6 +33,15 @@
 
 اجرا: `npm install` سپس `npm run dev`. منطق خالص فرم و فیلتر کار در `src/lib` است.
 
+### انتشار روی GitHub Pages
+
+آدرس عمومی: `https://smmobin.github.io/personal-site-prototype/`
+
+- باید خروجی `vite build` (`dist/`) منتشر شود، نه ریشهٔ سورس ریپو.
+- در Vite باید `base: '/personal-site-prototype/'` باشد تا JS/CSS/favicon از زیرمسیر درست لود شوند.
+- سرو کردن `index.html` خام با `src="/src/main.ts"` روی Pages کار نمی‌کند: مسیر مطلق به دامنهٔ ریشه می‌رود و مرورگر TypeScript خام Vite را اجرا نمی‌کند.
+- ترجیح: GitHub Actions روی `main` بیلد بگیرد و `dist` را به Pages بفرستد.
+
 ## ۴. معماری اطلاعات
 
 تک‌صفحه با انکر:
