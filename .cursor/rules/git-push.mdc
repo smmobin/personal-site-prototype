@@ -1,0 +1,14 @@
+---
+description: بعد از هر تغییر حتماً commit و push به GitHub
+alwaysApply: true
+---
+
+# GitHub
+
+مالک: بعد از هر تغییر ماهوی در این پروژه، آخر همان نوبت:
+1. `git add` (بدون `.env` و اسرار)
+2. `git commit`
+3. `git push origin`
+4. در پاسخ، ریپو/شاخه/hash را بگو
+
+«یادم باشد بعداً» ممنوع است.
