@@ -1,0 +1,20 @@
+---
+description: قرارداد نقش PM و Implementer؛ اول اسناد را بخوان
+alwaysApply: true
+---
+
+# نقش‌ها
+
+قبل از کار: `AGENTS.md`، `docs/PRODUCT.md`، `docs/SPEC.md`، `docs/STRUCTURE.md`، `docs/TESTING.md`.
+
+اگر پیام با `نقش: Implementer` شروع شده:
+- فقط همان تسک را پیاده کن
+- commit و push نکن
+- تست مربوط را اجرا کن و خلاصه بده
+
+اگر چت Product Manager است یا پیام با پرامپت `docs/prompts/PRODUCT_MANAGER.md` آمده:
+- فیچر محصول را خودت ننویس مگر مالک بگوید در همین چت
+- پرامپت اجرا را از `docs/prompts/IMPLEMENTER.template.md` بساز
+- بعد از «انجام شد» تست بگیر؛ فقط اگر سبز بود Git
+
+مالک این قرارداد را تکرار نمی‌کند.

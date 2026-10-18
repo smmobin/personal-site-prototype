@@ -1,10 +1,10 @@
 import { getDictionary } from "./i18n";
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-type Field = "name" | "email" | "subject" | "message" | "consent";
-
-const FIELDS: Field[] = ["name", "email", "subject", "message", "consent"];
+import {
+  CONTACT_FIELDS,
+  isContactValid,
+  validateContact,
+  type ContactField,
+} from "./lib/contactValidation";
 
 export function initForm(): void {
   const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
@@ -12,10 +12,10 @@ export function initForm(): void {
 
   const submit = form.querySelector<HTMLButtonElement>("[data-submit]");
   const success = form.querySelector<HTMLElement>("[data-form-success]");
-  let lastErrors: Partial<Record<Field, string>> = {};
+  let lastErrors: Partial<Record<ContactField, string>> = {};
   let sending = false;
 
-  const setError = (field: Field, message: string): void => {
+  const setError = (field: ContactField, message: string): void => {
     if (message) lastErrors[field] = message;
     else delete lastErrors[field];
 
@@ -28,30 +28,27 @@ export function initForm(): void {
   };
 
   const clearErrors = (): void => {
-    FIELDS.forEach((field) => setError(field, ""));
+    CONTACT_FIELDS.forEach((field) => setError(field, ""));
   };
 
   const validate = (): boolean => {
     const dict = getDictionary().contact.errors;
     const data = new FormData(form);
-    const name = String(data.get("name") ?? "").trim();
-    const email = String(data.get("email") ?? "").trim();
-    const subject = String(data.get("subject") ?? "").trim();
-    const message = String(data.get("message") ?? "").trim();
-    const consent =
-      form.querySelector<HTMLInputElement>('[name="consent"]')?.checked ?? false;
+    const errors = validateContact({
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      subject: String(data.get("subject") ?? ""),
+      message: String(data.get("message") ?? ""),
+      consent:
+        form.querySelector<HTMLInputElement>('[name="consent"]')?.checked ?? false,
+    });
 
-    setError("name", name ? "" : dict.name);
-    if (!email) setError("email", dict.email);
-    else if (!EMAIL_RE.test(email)) setError("email", dict.emailInvalid);
-    else setError("email", "");
-    setError("subject", subject ? "" : dict.subject);
-    if (!message) setError("message", dict.message);
-    else if (message.length < 20) setError("message", dict.messageShort);
-    else setError("message", "");
-    setError("consent", consent ? "" : dict.consent);
+    CONTACT_FIELDS.forEach((field) => {
+      const key = errors[field];
+      setError(field, key ? dict[key] : "");
+    });
 
-    return FIELDS.every((field) => !lastErrors[field]);
+    return isContactValid(errors);
   };
 
   form.addEventListener("submit", (event) => {
@@ -93,6 +90,6 @@ export function initForm(): void {
     if (success?.classList.contains("is-visible")) {
       success.textContent = dict.contact.success;
     }
-    if (FIELDS.some((field) => lastErrors[field])) validate();
+    if (CONTACT_FIELDS.some((field) => lastErrors[field])) validate();
   });
 }

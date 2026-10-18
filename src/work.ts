@@ -1,15 +1,11 @@
 import { getDictionary } from "./i18n";
+import { isWorkFilter, resolveSelectedId } from "./lib/workFilter";
 import {
   renderWorkDetail,
   renderWorkFilters,
   renderWorkGrid,
   type WorkViewState,
 } from "./render";
-import type { WorkTag } from "./i18n/types";
-
-function isFilter(value: string | undefined): value is WorkViewState["filter"] {
-  return value === "all" || value === "product" || value === "interface" || value === "ai";
-}
 
 export function initWork(state: WorkViewState): void {
   const section = document.querySelector("#work");
@@ -27,16 +23,13 @@ export function initWork(state: WorkViewState): void {
     const filterBtn = target?.closest<HTMLElement>("[data-filter]");
     if (filterBtn) {
       const next = filterBtn.dataset.filter;
-      if (!isFilter(next)) return;
+      if (!isWorkFilter(next)) return;
       state.filter = next;
-      const stillVisible =
-        state.selectedId &&
-        getDictionary().work.projects.some(
-          (project) =>
-            project.id === state.selectedId &&
-            (next === "all" || project.tags.includes(next as WorkTag)),
-        );
-      if (!stillVisible) state.selectedId = null;
+      state.selectedId = resolveSelectedId(
+        getDictionary().work.projects,
+        next,
+        state.selectedId,
+      );
       paint();
       return;
     }

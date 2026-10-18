@@ -1,33 +1,49 @@
 # personal-site-prototype
 
-سایت شخصی دو زبانه (FA/EN) — پروتوتایپ.
+سایت شخصی دوزبانه (FA/EN) — پروتوتایپ Vite + TypeScript.
 
-## مسیر
+- مسیر محلی: `D:\VibeCoding\Cursor\personal-site-prototype`
+- ریپو: https://github.com/smmobin/personal-site-prototype
+- پوشهٔ قدیمی `Mobin` را باز نکن؛ همین پوشه منبع رسمی است.
 
-`D:\VibeCoding\Cursor\personal-site-prototype`  
-ریپو: https://github.com/smmobin/personal-site-prototype
-
-پوشهٔ قدیمی `Mobin` را باز نکن؛ همین پوشه منبع رسمی است.
-
-## اجرا (الزامی)
+## اجرا
 
 این پروژه Vite است. **فایل `index.html` را مستقیم در مرورگر باز نکن** — اسکریپت‌ها لود نمی‌شوند.
 
 ```sh
-cd D:\VibeCoding\Cursor\personal-site-prototype
 npm install
 npm run dev
 ```
 
-بعد برو به: http://127.0.0.1:3000/
-
-پیش‌نمایش بیلد:
+آدرس: http://127.0.0.1:3000/
 
 ```sh
 npm run build
 npm run preview
 ```
 
-## نکته
+## تست
 
-فرم تماس پروتوتایپ است و چیزی ارسال/ذخیره نمی‌کند. فقط زبان در `localStorage` می‌ماند.
+اولین بار: `npm run test:e2e:install`
+
+```sh
+npm test              # Vitest
+npm run test:e2e      # Playwright
+npm run verify        # واحد + بیلد + e2e
+```
+
+جزئیات: [`docs/TESTING.md`](docs/TESTING.md)
+
+## اسناد محصول
+
+| فایل | محتوا |
+| --- | --- |
+| [`docs/SPEC.md`](docs/SPEC.md) | اسپک محصول |
+| [`docs/STRUCTURE.md`](docs/STRUCTURE.md) | درخت فایل و جریان داده |
+| [`docs/PRODUCT.md`](docs/PRODUCT.md) | قرارداد PM / Implementer / Git |
+| [`docs/prompts/PRODUCT_MANAGER.md`](docs/prompts/PRODUCT_MANAGER.md) | پرامپت چت مدیر محصول |
+| [`AGENTS.md`](AGENTS.md) | ورود هر ایجنت |
+
+## نکته محصول
+
+فرم تماس پروتوتایپ است و چیزی ارسال/ذخیره نمی‌کند. فقط زبان در `localStorage` با کلید `persona-lang` می‌ماند.

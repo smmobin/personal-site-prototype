@@ -1,0 +1,12 @@
+---
+description: منطق خالص در src/lib و پوشش Vitest/Playwright
+alwaysApply: true
+---
+
+# تست
+
+- ولیدیشن و فیلتر را در `src/lib` نگه دار، نه داخل handler DOM.
+- برای منطق جدید تست واحد در `tests/unit` بنویس.
+- مسیر کاربر جدید یا شکسته‌شده را به `tests/e2e/site.spec.ts` اضافه کن.
+- دستورها: `npm test`، `npm run test:e2e`، دروازه `npm run verify`.
+- بدون اجرای تست مربوط، کار را تمام‌شده اعلام نکن.

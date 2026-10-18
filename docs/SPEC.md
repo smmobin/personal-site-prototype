@@ -27,8 +27,11 @@
 - محتوا: `src/i18n/en.ts` و `src/i18n/fa.ts`
 - زبان انتخاب‌شده در `localStorage` با کلید `persona-lang`
 - بدون بک‌اند؛ فرم تماس فقط ولیدیشن کلاینت + استیت موفقیت ساختگی
+- تست واحد: Vitest + happy-dom (`npm test`)
+- تست مرورگر: Playwright Chromium (`npm run test:e2e`)
+- دروازهٔ انتشار: `npm run verify`
 
-اجرا: `npm install` سپس `npm run dev`.
+اجرا: `npm install` سپس `npm run dev`. منطق خالص فرم و فیلتر کار در `src/lib` است.
 
 ## ۴. معماری اطلاعات
 
@@ -78,3 +81,7 @@ Skip link، کنتراست تقریبی WCAG AA، فوکوس قابل‌دیدن
 ## ۹. آنچه ساخته نمی‌شود
 
 صفحه جدا برای پروژه/بلاگ/حریم خصوصی، بک‌اند، تم روشن، CMS، عکس پرتره واقعی، داده رزومه واقعی.
+
+## ۱۰. نحوهٔ کار روی محصول
+
+دو چت جدا: Product Manager (پایدار) و Implementer (یک‌بارمصرف). قرارداد کامل در `docs/PRODUCT.md` است. پرامپت PM در `docs/prompts/PRODUCT_MANAGER.md` است. بعد از هر تغییر ماهوی، PM تست می‌گیرد و فقط اگر سبز بود به `origin` پوش می‌کند.

@@ -1,14 +1,19 @@
 ---
-description: بعد از هر تغییر حتماً commit و push به GitHub
+description: بعد از تست سبز، فقط PM (یا چت واحد) commit و push می‌کند
 alwaysApply: true
 ---
 
 # GitHub
 
-مالک: بعد از هر تغییر ماهوی در این پروژه، آخر همان نوبت:
-1. `git add` (بدون `.env` و اسرار)
+Implementer (`نقش: Implementer`): هیچ commit یا pushی نکن.
+
+Product Manager، یا چتی که نقش‌اش جدا نشده:
+بعد از تغییر ماهوی و سبز بودن تست:
+1. `git add` بدون `.env` و اسرار
 2. `git commit`
 3. `git push origin`
-4. در پاسخ، ریپو/شاخه/hash را بگو
+4. ریپو / شاخه / hash را در پاسخ بگو
 
+حداقل `npm test`. تغییر UI: `npm run test:e2e`. انتشار: `npm run verify`.
+تست قرمز = بدون commit.
 «یادم باشد بعداً» ممنوع است.

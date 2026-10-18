@@ -1,5 +1,6 @@
 import { getDictionary, getLang, localizeDigits } from "./i18n";
-import type { Dictionary, Lang, NavKey, WorkTag } from "./i18n/types";
+import type { Dictionary, Lang, NavKey } from "./i18n/types";
+import { filterProjects, WORK_FILTERS, type WorkFilter } from "./lib/workFilter";
 
 const NAV_ORDER: NavKey[] = [
   "about",
@@ -164,16 +165,14 @@ function renderSubjects(dict: Dictionary): void {
 
 export function renderWorkGrid(
   dict: Dictionary,
-  filter: "all" | WorkTag,
+  filter: WorkFilter,
   selectedId: string | null,
 ): void {
   const root = document.querySelector("[data-work-grid]");
   const empty = document.querySelector("[data-work-empty]");
   if (!root) return;
 
-  const projects = dict.work.projects.filter(
-    (project) => filter === "all" || project.tags.includes(filter),
-  );
+  const projects = filterProjects(dict.work.projects, filter);
 
   root.innerHTML = projects
     .map((project) => {
@@ -199,11 +198,11 @@ export function renderWorkGrid(
 
 export function renderWorkFilters(
   dict: Dictionary,
-  filter: "all" | WorkTag,
+  filter: WorkFilter,
 ): void {
   const root = document.querySelector("[data-work-filters]");
   if (!root) return;
-  const keys = ["all", "product", "interface", "ai"] as const;
+  const keys = WORK_FILTERS;
   root.innerHTML = keys
     .map(
       (key) =>
@@ -259,7 +258,7 @@ export function updateLangButtons(lang: Lang): void {
 }
 
 export interface WorkViewState {
-  filter: "all" | WorkTag;
+  filter: WorkFilter;
   selectedId: string | null;
 }
 

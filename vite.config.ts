@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   server: {
@@ -10,5 +10,9 @@ export default defineConfig({
     port: 3000,
     host: true,
     strictPort: true,
+  },
+  test: {
+    environment: "happy-dom",
+    include: ["tests/unit/**/*.test.ts"],
   },
 });
