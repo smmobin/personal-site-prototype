@@ -1,5 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
+const APP_BASE = "/personal-site-prototype";
+
 async function open(page: Page, path = "/"): Promise<void> {
   await page.route("https://fonts.googleapis.com/**", (route) => route.abort());
   await page.route("https://fonts.gstatic.com/**", (route) => route.abort());
@@ -10,7 +12,10 @@ async function open(page: Page, path = "/"): Promise<void> {
       /* ignore */
     }
   });
-  await page.goto(path, { waitUntil: "domcontentloaded" });
+  const target = path.startsWith("#")
+    ? `${APP_BASE}/${path}`
+    : `${APP_BASE}${path === "/" ? "/" : path}`;
+  await page.goto(target, { waitUntil: "domcontentloaded" });
 }
 
 test("loads the landing page with primary sections", async ({ page }) => {

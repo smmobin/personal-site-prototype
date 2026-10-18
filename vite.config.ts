@@ -1,6 +1,7 @@
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
+  base: "/personal-site-prototype/",
   server: {
     port: 3000,
     host: true,

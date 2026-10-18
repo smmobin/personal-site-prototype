@@ -15,12 +15,14 @@ npm install
 npm run dev
 ```
 
-آدرس: http://127.0.0.1:3000/
+آدرس: http://127.0.0.1:3000/personal-site-prototype/
 
 ```sh
 npm run build
 npm run preview
 ```
+
+پیش‌نمایش بیلد هم روی همان زیرمسیر است: http://127.0.0.1:3000/personal-site-prototype/
 
 ## تست
 
@@ -48,7 +50,9 @@ npm run verify        # واحد + بیلد + e2e
 
 آدرس: https://smmobin.github.io/personal-site-prototype/
 
-این پروژه Vite است. **ریشهٔ سورس را به Pages وصل نکن** — فقط `dist` بعد از `npm run build` باید سرو شود و `base` باید `/personal-site-prototype/` باشد. جزئیات در [`docs/SPEC.md`](docs/SPEC.md).
+این پروژه Vite است. **ریشهٔ سورس را به Pages وصل نکن** — فقط `dist` بعد از `npm run build` باید سرو شود و `base` باید `/personal-site-prototype/` باشد.
+
+استقرار خودکار: روی push به `main`، workflow فایل [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) بیلد می‌گیرد و `dist/` را با GitHub Actions به Pages می‌فرستد. در Settings → Pages منبع را روی **GitHub Actions** بگذار (نه Deploy from branch). جزئیات در [`docs/SPEC.md`](docs/SPEC.md).
 
 ## نکته محصول
 
